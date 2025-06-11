@@ -176,8 +176,8 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
                     {/* Sidebar */}
                     <div className="space-y-8">
                         {/* Project Info Card */}
-                        <div className="bg-white rounded-xl shadow-md p-6 sticky top-8">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-6">Project Details</h3>
+                        <div className=" rounded-xl shadow-md p-6 ">
+                            <h3 className="text-xl font-semibold  mb-6">Project Details</h3>
                             
                             <div className="space-y-4">
                                 <div className="flex items-center space-x-3">
