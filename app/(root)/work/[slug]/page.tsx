@@ -22,60 +22,64 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
 
     return (
         <div className="min-h-screen bg-[#121212] text-white">
-            {/* Navigation */}
-            <nav className="bg-white shadow-sm border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
-                        <Link 
-                            href="/work" 
-                            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
-                        >
-                            <ArrowLeft className="w-5 h-5" />
-                            <span className="font-medium">Back to Projects</span>
-                        </Link>
-                        
-                        {project.featured && (
-                            <div className="flex items-center space-x-1 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
-                                <Star className="w-4 h-4" />
-                                <span>Featured Project</span>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </nav>
+           
 
             {/* Hero Section */}
-            <div className="relative overflow-hidden">
+            <div className="relative h-[90vh] overflow-hidden">
+                {/* Parallax Background Image */}
                 <div 
-                    className="absolute inset-0 bg-gradient-to-br opacity-90"
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ 
-                        backgroundColor: project.color || '#1f2937',
-                        backgroundImage: `linear-gradient(135deg, ${project.color || '#1f2937'}, ${project.color ? project.color + '80' : '#374151'})`
+                        backgroundImage: `url(${project.imageUrl})`,
+                        transform: "translateZ(0)",
+                        willChange: "transform",
+                    }}
+                    data-scroll
+                    data-scroll-speed="-7"
+                />
+                
+                {/* Overlay Gradient */}
+                <div 
+                    className="absolute inset-0 bg-gradient-to-b from-[#121212]/70 via-[#121212]/50 to-[#121212]"
+                    style={{ 
+                        backgroundColor: `${project.color || '#1f2937'}30`,
                     }}
                 />
                 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-                    <div className="text-center">
+                <div className="relative h-full flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
+                    <div 
+                       
+                        className="text-center max-w-5xl"
+                    >
                         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                             {project.pageTitle || project.title}
                         </h1>
                         
                         {project.subtitle && (
-                            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+                            <p 
+                               
+                                className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
+                            >
                                 {project.subtitle}
                             </p>
                         )}
                         
-                        <div className="flex flex-wrap justify-center gap-4 mt-8">
-                            <button className="bg-white text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center space-x-2">
-                                <Play className="w-5 h-5" />
-                                <span>View Live Demo</span>
-                            </button>
-                            
-                            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors flex items-center space-x-2">
-                                <Github className="w-5 h-5" />
-                                <span>View Source</span>
-                            </button>
+                      
+                    </div>
+                </div>
+                
+                {/* Scroll indicator */}
+                <div 
+                    
+                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                >
+                    <div className="flex flex-col items-center">
+                        <span className="text-sm text-white/70 mb-2">Scroll to explore</span>
+                        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                            <div 
+                                
+                                className="w-1.5 h-1.5 bg-white rounded-full mt-2"
+                            />
                         </div>
                     </div>
                 </div>
@@ -88,7 +92,7 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
                     <div className="lg:col-span-2 space-y-12">
                         {/* Project Image */}
                         <div className="relative">
-                            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-200">
+                            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl ">
                                 <img 
                                     src={project.imageUrl} 
                                     alt={project.title}
@@ -99,15 +103,15 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
 
                         {/* Project Description */}
                         <div className="prose prose-lg max-w-none">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6">About This Project</h2>
-                            <div className="text-gray-700 leading-relaxed">
+                            <h2 className="text-3xl font-bold  mb-6">About This Project</h2>
+                            <div className=" leading-relaxed">
                                 {project.description}
                             </div>
                         </div>
 
                         {/* Key Features Section */}
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Features</h2>
+                            <h2 className="text-3xl font-bold  mb-8">Key Features</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {[
                                     {
@@ -131,10 +135,10 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
                                         icon: "🏗️"
                                     }
                                 ].map((feature, index) => (
-                                    <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                                    <div key={index} className=" p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                                         <div className="text-2xl mb-3">{feature.icon}</div>
-                                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                                        <p className="text-gray-600">{feature.description}</p>
+                                        <h3 className="text-xl font-semibold  mb-2">{feature.title}</h3>
+                                        <p className="">{feature.description}</p>
                                     </div>
                                 ))}
                             </div>
@@ -142,28 +146,28 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
 
                         {/* Technical Details */}
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-8">Technical Implementation</h2>
-                            <div className="bg-white rounded-xl shadow-md p-8">
+                            <h2 className="text-3xl font-bold  mb-8">Technical Implementation</h2>
+                            <div className=" rounded-xl shadow-md p-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Frontend Technologies</h3>
+                                        <h3 className="text-lg font-semibold  mb-4">Frontend Technologies</h3>
                                         <div className="space-y-2">
                                             {['React/Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'].map((tech, index) => (
                                                 <div key={index} className="flex items-center space-x-2">
                                                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                    <span className="text-gray-700">{tech}</span>
+                                                    <span >{tech}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                     
                                     <div>
-                                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Backend & Tools</h3>
+                                        <h3 className="text-lg font-semibold  mb-4">Backend & Tools</h3>
                                         <div className="space-y-2">
                                             {['Node.js/Express', 'PostgreSQL', 'Docker', 'AWS/Vercel'].map((tech, index) => (
                                                 <div key={index} className="flex items-center space-x-2">
                                                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                                    <span className="text-gray-700">{tech}</span>
+                                                    <span className="">{tech}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -181,25 +185,25 @@ const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
                             
                             <div className="space-y-4">
                                 <div className="flex items-center space-x-3">
-                                    <Calendar className="w-5 h-5 text-gray-500" />
+                                    <Calendar className="w-5 h-5 " />
                                     <div>
-                                        <p className="text-sm text-gray-500">Duration</p>
+                                        <p className="text-sm ">Duration</p>
                                         <p className="font-medium">3 months</p>
                                     </div>
                                 </div>
                                 
                                 <div className="flex items-center space-x-3">
-                                    <Tag className="w-5 h-5 text-gray-500" />
+                                    <Tag className="w-5 h-5 " />
                                     <div>
-                                        <p className="text-sm text-gray-500">Category</p>
+                                        <p className="text-sm ">Category</p>
                                         <p className="font-medium">Web Application</p>
                                     </div>
                                 </div>
                                 
                                 <div className="flex items-center space-x-3">
-                                    <ExternalLink className="w-5 h-5 text-gray-500" />
+                                    <ExternalLink className="w-5 h-5 " />
                                     <div>
-                                        <p className="text-sm text-gray-500">Status</p>
+                                        <p className="text-sm ">Status</p>
                                         <p className="font-medium text-green-600">Completed</p>
                                     </div>
                                 </div>
