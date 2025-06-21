@@ -1,5 +1,5 @@
 import { slugify } from "@/lib/utils";
-import { Layers, Palette, Search, Target } from "lucide-react";
+import { CheckCircle, Clock, Layers, Palette, Search, Target, Users, Zap } from "lucide-react";
 
  export const images = [
     {
@@ -142,4 +142,136 @@ export const allProjects = [
     color: "text-red-500",
     slug: slugify("PulseAI 2"), // Unique slug
   },
+];
+
+
+// work sections
+
+export const works = [
+  {
+    slug: "ai-analytics-platform",
+    title: "AI Analytics Platform",
+    shortDescription: "Enterprise-grade analytics with ML insights.",
+    longDescription:
+      "An AI-powered analytics dashboard built for large-scale enterprise reporting. Includes custom data pipelines, predictive modeling, and real-time visualizations using D3.js and Next.js.",
+    imageCover: "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+    images: [
+       "https://assets.aceternity.com/vortex.png",
+    "https://assets.aceternity.com/wobble-card.png",
+    "https://assets.aceternity.com/world-map.webp",
+    ],
+    //   label: "Duration", 
+    //   value: "3 months", 
+    //   icon: Clock, 
+    // Team: "Team", 
+    // members: "5+ members", 
+    // Users: Users ,
+    //  Status: "Status", 
+    //  Completed: "Completed",
+    //   CheckCircle: CheckCircle ,
+    //  Impact: "Impact",
+    //   performance: "+40% performance",
+    //    Zap: Zap ,
+  },
+  {
+    slug: "ecommerce-optimization",
+    title: "E-commerce Optimization Engine",
+    shortDescription: "AI-driven personalization engine increasing conversions by 15%",
+    longDescription:
+      "We designed and implemented a personalization engine using OpenAI embeddings and real-time user behavior tracking. It integrates into Shopify/Custom stacks and includes A/B testing tools.",
+    imageCover: "https://www.aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+    images: [
+"https://assets.aceternity.com/macbook-scroll.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
+    "https://assets.aceternity.com/multi-step-loader.png",
+    ],
+  },
+  {
+    slug: "fintech-app",
+    title: "FinTech Mobile App",
+    shortDescription: "AI-powered financial planning with user-centric mobile design.",
+    longDescription:
+      "We built a FinTech platform that uses AI to analyze spending behavior and deliver personalized financial recommendations. Delivered a full-stack React Native + Supabase solution in under 3 weeks.",
+    imageCover: "https://assets.aceternity.com/pro/aceternity-landing.webp",
+    images: [
+     "https://assets.aceternity.com/glowing-effect.webp",
+    "https://assets.aceternity.com/hover-border-gradient.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png"
+    ],
+  },
+  {
+    slug: "healthcare-dashboard",
+    title: "Healthcare Dashboard",
+    shortDescription: "Real-time patient monitoring with predictive alerts.",
+    longDescription:
+      "We developed a HIPAA-compliant dashboard to visualize real-time patient vitals and use AI models for anomaly detection. Used Next.js, D3, and TensorFlow Lite for edge processing.",
+    imageCover: "https://www.aceternity.com/images/products/thumbnails/new/renderwork.png",
+    images: [
+    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
+    "https://assets.aceternity.com/tabs.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
+    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
+    ],
+  },
+  {
+    slug: "product-design-system",
+    title: "Product Design System",
+    shortDescription: "A reusable UI/UX system to scale product velocity.",
+    longDescription:
+      "We delivered a responsive, themeable design system for a SaaS startup. Includes over 40 components with accessibility, variants, and Tailwind theming support.",
+    imageCover: "https://aceternity.com/images/products/thumbnails/new/designkit.png",
+    images: [
+       "https://assets.aceternity.com/signup-form.png",
+    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
+    "https://assets.aceternity.com/spotlight-new.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+      
+
+
+    ],
+  },
+  {
+    slug: "ai-chat-integration",
+    title: "AI Chat Integration",
+    shortDescription: "ChatGPT-powered onboarding assistant for SaaS users.",
+    longDescription:
+      "We built a context-aware AI assistant integrated into a B2B SaaS dashboard. Users can query documentation, get guided workflows, and generate reports via natural language.",
+    imageCover: "https://aceternity.com/images/products/thumbnails/new/autopilot.png",
+    images: [
+    "https://assets.aceternity.com/hero-highlight.png",
+    "https://assets.aceternity.com/carousel.webp",
+    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
+    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    ],
+  },
+  {
+    slug: "startup-ai-strategy",
+    title: "AI Strategy for Startups",
+    shortDescription: "AI use case discovery and GTM plan — delivered in 7 days.",
+    longDescription:
+      "We ran a 7-day sprint with a fast-growing EdTech startup to define their AI use cases, build a proof-of-concept, and deliver a complete product roadmap. Included GPT-powered mockups and Figma prototypes.",
+    imageCover: "https://aceternity.com/images/products/thumbnails/new/brainstorm.png",
+    images: [
+       "https://assets.aceternity.com/github-globe.png",
+    "https://assets.aceternity.com/glare-card.png",
+    "https://assets.aceternity.com/layout-grid.png",
+    "https://assets.aceternity.com/flip-text.png",
+    ],
+  },
+  {
+    slug: "recruitment-platform",
+    title: "AI Recruitment Platform",
+    shortDescription: "Automated candidate matching using LLM embeddings.",
+    longDescription:
+      "Built a hiring platform that screens resumes, analyzes intent, and ranks applicants using embeddings and fine-tuned OpenAI models. Delivered in under 10 days with Supabase + LangChain.",
+    imageCover: "https://aceternity.com/images/products/thumbnails/new/hireai.png",
+    images: [
+    "https://assets.aceternity.com/animated-modal.png",
+    "https://assets.aceternity.com/animated-testimonials.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
+    "https://assets.aceternity.com/github-globe.png",
+    ],
+  }
 ];

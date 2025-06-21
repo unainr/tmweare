@@ -1,275 +1,209 @@
-import { allProjects } from '@/constants';
-import React from 'react';
-import { ArrowLeft, Calendar, Tag, Star, ExternalLink, Github, Play } from 'lucide-react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
+import {
+	CheckCircle,
+	Clock,
+	ExternalLink,
+	Github,
+	Tag,
+	Users,
+	Zap,
+	Calendar,
+	ArrowLeft,
+} from "lucide-react";
+import { services, works } from "@/constants";
+import Image from "next/image";
+import FooterCTA from "@/components/layout/footercta";
+import FaqSection from "@/components/home/module/ui/FAQ";
 
-const WorkSlug = async ({params}: {params: Promise<{ slug: string }>}) => {
-    const {slug} = await params;
-    const project = allProjects.find((proj:any) => proj.slug === slug);
+const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
+	const { slug } = await params;
+	const project = works.find((proj: any) => proj.slug === slug);
 
-    if (!project) {
-        return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-                    <Link href="/work" className="text-blue-600 hover:text-blue-800 font-medium">
-                        ← Back to Projects
-                    </Link>
-                </div>
-            </div>
-        );
-    }
+	if (!project) {
+		return <div>Project not found</div>;
+	}
 
-    return (
-        <div className="min-h-screen bg-[#121212] text-white">
-           
+	const metrics = [
+		{ label: "Duration", value: "3 months", icon: Clock },
+		{ label: "Team", value: "5+ members", icon: Users },
+		{ label: "Status", value: "Completed", icon: CheckCircle },
+		{ label: "Impact", value: "+40% performance", icon: Zap },
+	];
 
-            {/* Hero Section */}
-            <div className="relative h-[90vh] overflow-hidden">
-                {/* Parallax Background Image */}
-                <div 
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ 
-                        backgroundImage: `url(${project.imageUrl})`,
-                        transform: "translateZ(0)",
-                        willChange: "transform",
-                    }}
-                    data-scroll
-                    data-scroll-speed="-7"
-                />
-                
-                {/* Overlay Gradient */}
-                <div 
-                    className="absolute inset-0 bg-gradient-to-b from-[#121212]/70 via-[#121212]/50 to-[#121212]"
-                    style={{ 
-                        backgroundColor: `${project.color || '#1f2937'}30`,
-                    }}
-                />
-                
-                <div className="relative h-full flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
-                    <div 
-                       
-                        className="text-center max-w-5xl"
-                    >
-                        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                            {project.pageTitle || project.title}
-                        </h1>
-                        
-                        {project.subtitle && (
-                            <p 
-                               
-                                className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed"
-                            >
-                                {project.subtitle}
-                            </p>
-                        )}
-                        
-                      
-                    </div>
-                </div>
-                
-                {/* Scroll indicator */}
-                <div 
-                    
-                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-                >
-                    <div className="flex flex-col items-center">
-                        <span className="text-sm text-white/70 mb-2">Scroll to explore</span>
-                        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-                            <div 
-                                
-                                className="w-1.5 h-1.5 bg-white rounded-full mt-2"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+	return (
+		<div className="my-10">
+			<div className="py-20 px-6 text-center">
+				<h1 className="text-4xl md:text-5xl font-bold mb-4 max-w-3xl mx-auto">
+					{project.title}: turning complex workflows into a profit-first SaaS
+					platform.
+				</h1>
+				<p className="max-w-xl mx-auto text-lg mb-10">
+					{project.shortDescription}
+				</p>
 
-            {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Main Content Column */}
-                    <div className="lg:col-span-2 space-y-12">
-                        {/* Project Image */}
-                        <div className="relative">
-                            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl ">
-                                <img 
-                                    src={project.imageUrl} 
-                                    alt={project.title}
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                />
-                            </div>
-                        </div>
+				<div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] mx-auto max-w-5xl mt-8">
+					<Image
+						src={project.imageCover}
+						alt={project.title}
+						fill
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+						className="object-contain"
+						priority
+					/>
+				</div>
+			</div>
 
-                        {/* Project Description */}
-                        <div className="prose prose-lg max-w-none">
-                            <h2 className="text-3xl font-bold  mb-6">About This Project</h2>
-                            <div className=" leading-relaxed">
-                                {project.description}
-                            </div>
-                        </div>
+			{/* Metrics */}
+			<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+				{services.map((service, index) => (
+					<div
+						key={index}
+						className=" p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+						{/* Icon */}
+						<div className="mb-6">
+							<div className="w-12 h-12 border-2 border-gray-300 rounded-full flex items-center justify-center">
+								<service.icon className="w-6 h-6 " strokeWidth={1.5} />
+							</div>
+						</div>
 
-                        {/* Key Features Section */}
-                        <div>
-                            <h2 className="text-3xl font-bold  mb-8">Key Features</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {[
-                                    {
-                                        title: "Modern Design",
-                                        description: "Clean, responsive interface built with modern web standards",
-                                        icon: "🎨"
-                                    },
-                                    {
-                                        title: "Performance Optimized",
-                                        description: "Fast loading times and smooth user experience",
-                                        icon: "⚡"
-                                    },
-                                    {
-                                        title: "Mobile Responsive",
-                                        description: "Perfectly adapted for all screen sizes and devices",
-                                        icon: "📱"
-                                    },
-                                    {
-                                        title: "Scalable Architecture",
-                                        description: "Built to grow and adapt with changing requirements",
-                                        icon: "🏗️"
-                                    }
-                                ].map((feature, index) => (
-                                    <div key={index} className=" p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                                        <div className="text-2xl mb-3">{feature.icon}</div>
-                                        <h3 className="text-xl font-semibold  mb-2">{feature.title}</h3>
-                                        <p className="">{feature.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+						{/* Title */}
+						<h3 className="text-2xl font-bold  mb-6">{service.title}</h3>
 
-                        {/* Technical Details */}
-                        <div>
-                            <h2 className="text-3xl font-bold  mb-8">Technical Implementation</h2>
-                            <div className=" rounded-xl shadow-md p-8">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div>
-                                        <h3 className="text-lg font-semibold  mb-4">Frontend Technologies</h3>
-                                        <div className="space-y-2">
-                                            {['React/Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'].map((tech, index) => (
-                                                <div key={index} className="flex items-center space-x-2">
-                                                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                    <span >{tech}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 className="text-lg font-semibold  mb-4">Backend & Tools</h3>
-                                        <div className="space-y-2">
-                                            {['Node.js/Express', 'PostgreSQL', 'Docker', 'AWS/Vercel'].map((tech, index) => (
-                                                <div key={index} className="flex items-center space-x-2">
-                                                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                                                    <span className="">{tech}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+						{/* Services List */}
+						<ul className="space-y-3">
+							{service.items.map((item, itemIndex) => (
+								<li key={itemIndex} className="flex items-start">
+									<span className="w-1.5 h-1.5  rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+									<span className="leading-relaxed">{item}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
 
-                    {/* Sidebar */}
-                    <div className="space-y-8">
-                        {/* Project Info Card */}
-                        <div className=" rounded-xl shadow-md p-6 ">
-                            <h3 className="text-xl font-semibold  mb-6">Project Details</h3>
-                            
-                            <div className="space-y-4">
-                                <div className="flex items-center space-x-3">
-                                    <Calendar className="w-5 h-5 " />
-                                    <div>
-                                        <p className="text-sm ">Duration</p>
-                                        <p className="font-medium">3 months</p>
-                                    </div>
-                                </div>
-                                
-                                <div className="flex items-center space-x-3">
-                                    <Tag className="w-5 h-5 " />
-                                    <div>
-                                        <p className="text-sm ">Category</p>
-                                        <p className="font-medium">Web Application</p>
-                                    </div>
-                                </div>
-                                
-                                <div className="flex items-center space-x-3">
-                                    <ExternalLink className="w-5 h-5 " />
-                                    <div>
-                                        <p className="text-sm ">Status</p>
-                                        <p className="font-medium text-green-600">Completed</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="mt-6 pt-6 border-t border-gray-200">
-                                <div className="flex flex-wrap gap-2">
-                                    {['React', 'Next.js', 'TypeScript', 'Tailwind'].map((tag, index) => (
-                                        <span 
-                                            key={index}
-                                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+			{/* About + Highlights */}
+			<section className="max-w-6xl mx-auto py-20 px-6">
+				<div className="space-y-12">
+					{/* Text Content First */}
+					<div className="  p-8">
+						<h2 className="text-2xl md:text-3xl font-bold mb-6 ">
+							About the Client
+						</h2>
+						<p className=" mb-8 leading-relaxed text-lg">
+							{project.longDescription}
+						</p>
 
-                        {/* Call to Action */}
-                        <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-xl p-6 text-white">
-                            <h3 className="text-xl font-semibold mb-3">Interested in Similar Work?</h3>
-                            <p className="text-blue-100 mb-4">Let's discuss how we can bring your vision to life.</p>
-                            <button className="bg-white text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors w-full">
-                                Get In Touch
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						<h3 className="text-xl font-semibold mb-4 ">Project Highlights</h3>
+						<ul className="space-y-3">
+							{[
+								"AI/ML integrations for dynamic analysis",
+								"Custom design system built from scratch",
+								"Integrated testing & deployment flow",
+							].map((highlight, index) => (
+								<li key={index} className="flex items-start">
+									<span className="inline-flex items-center justify-center h-6 w-6 rounded-full  mr-3 mt-0.5">
+										<svg
+											className="h-4 w-4 "
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor">
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth={2}
+												d="M5 13l4 4L19 7"
+											/>
+										</svg>
+									</span>
+									<span>{highlight}</span>
+								</li>
+							))}
+						</ul>
+					</div>
 
-            {/* Related Projects */}
-            <div className="bg-white py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">Related Projects</h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto">
-                            Explore more of our work and see how we solve complex challenges
-                        </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {allProjects.filter(p => p.slug !== slug).slice(0, 3).map((relatedProject, index) => (
-                            <Link key={index} href={`/work/${relatedProject.slug}`}>
-                                <div className="group cursor-pointer">
-                                    <div className="aspect-video rounded-xl overflow-hidden mb-4 bg-gray-200">
-                                        <img 
-                                            src={relatedProject.imageUrl} 
-                                            alt={relatedProject.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                                        {relatedProject.title}
-                                    </h3>
-                                    <p className="text-gray-600 line-clamp-2">
-                                        {relatedProject.description}
-                                    </p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+					{/* Image Below */}
+					<div className="relative h-[500px] w-full ">
+						{
+							<Image
+								src={project.imageCover}
+								alt={`${project.title} cover image`}
+								fill
+								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+								className="object-cover"
+								priority
+							/>
+						}
+
+						{/* Optional overlay gradient at the bottom for better text visibility if needed */}
+						<div className="absolute bottom-0 left-0 right-0 h-24 "></div>
+
+						{/* Optional caption */}
+						<div className="absolute bottom-4 left-4 right-4">
+							<p className=" text-sm font-medium">
+								{project.title} - Implementation Screenshot
+							</p>
+						</div>
+					</div>
+					{project.images?.length > 0 &&
+						project.images.map((img, index) => (
+							<div key={index} className=" p-8 space-y-6">
+								<div>
+									<h2 className="text-2xl md:text-3xl font-bold mb-6 ">
+										About the Client
+									</h2>
+									<p className=" mb-8 leading-relaxed text-lg">
+										{project.longDescription}
+									</p>
+
+									<h3 className="text-xl font-semibold mb-4 ">
+										Project Highlights
+									</h3>
+									<ul className="space-y-3">
+										{[
+											"AI/ML integrations for dynamic analysis",
+											"Custom design system built from scratch",
+											"Integrated testing & deployment flow",
+										].map((highlight, index) => (
+											<li key={index} className="flex items-start">
+												<span className="inline-flex items-center justify-center h-6 w-6 rounded-full  mr-3 mt-0.5">
+													<svg
+														className="h-4 w-4 "
+														fill="none"
+														viewBox="0 0 24 24"
+														stroke="currentColor">
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															strokeWidth={2}
+															d="M5 13l4 4L19 7"
+														/>
+													</svg>
+												</span>
+												<span>{highlight}</span>
+											</li>
+										))}
+									</ul>
+								</div>
+
+								<div>
+									<Image
+										src={img}
+										alt={`Feature ${index + 1} image`}
+										width={1200}
+										height={600}
+										className="w-full h-auto object-cover"
+									/>
+								</div>
+							</div>
+						))}
+				</div>
+			</section>
+            	<FooterCTA />
+			<FaqSection/>
+		</div>
+	);
 };
 
 export default WorkSlug;

@@ -6,7 +6,7 @@ import React from 'react'
 const Layout = ({children}:LayoutProps) => {
   return (
     <>
-    <Navigation dark={true}/>
+    <Navigation />
     {children}
     <Footer dark={true}/>
     </>

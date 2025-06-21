@@ -1,16 +1,28 @@
+import MainCard from "@/components/cards/MainCard";
 import DesignImpact from "@/components/home/module/ui/DesignImpact";
+import FaqSection from "@/components/home/module/ui/FAQ";
 import ProjectFeature from "@/components/home/module/ui/FeaturedProduct";
 import FuturisticHero from "@/components/home/module/ui/FuturisticHero ";
 import AnimatedCircles from "@/components/home/module/ui/Globe";
+import HeroMain from "@/components/home/module/ui/Hero";
+import ServicesOverview from "@/components/home/module/ui/ServicesOverview";
+import ServicesShowcase from "@/components/home/module/ui/showcaseservices";
+import TrustedClient from "@/components/home/module/ui/TrusedClients";
+import FooterCTA from "@/components/layout/footercta";
 
 export default function Home() {
 	return (
-		<div className="bg-[#121212] text-white">
-			<FuturisticHero />
-			<DesignImpact />
-			<AnimatedCircles />
-			<ProjectFeature
-			pageTitle="Featured Projects"
+		<>
+			<HeroMain />
+			<ServicesOverview />
+			<ServicesShowcase />
+			<MainCard />
+			<TrustedClient/>
+			<FooterCTA />
+			<FaqSection/>
+			{/* <AnimatedCircles /> */}
+			{/* <ProjectFeature
+				pageTitle="Featured Projects"
 				featured={true}
 				title="Anthem"
 				subtitle="Helping teams make decisions with real-time health data"
@@ -40,7 +52,7 @@ export default function Home() {
 				imageUrl="https://media.istockphoto.com/id/2158919442/photo/digital-eye-ai-artificial-intelligence-digital-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=3pPriny2ZmQK4fq289jwODHuKg94Lytr5_S13JVi-h8="
 				reverse={true}
 				color="text-[#0bbba9]"
-			/>
-		</div>
+			/> */}
+		</>
 	);
 }
