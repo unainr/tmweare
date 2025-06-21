@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Logo + Mission */}
         <div className="space-y-4">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            AgencyWebsite
+           Ravamo
           </Link>
           <p className="text-sm text-muted-foreground">
             We build AI-powered strategies and products that launch in days, not months.
