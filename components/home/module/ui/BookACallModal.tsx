@@ -30,13 +30,16 @@ export default function BookACallModal() {
 				<Button
 					variant={"ghost"}
 					className="flex items-center gap-3 px-4 py-2 rounded-full hover:bg-accent/90 transition-all duration-300 ease-in-out cursor-pointer">
-					<Image
-						src="/murtaza.jpg"
-						alt="Murtaza"
-						width={32}
-						height={32}
-						className="rounded-full object-cover"
-					/>
+					<div className="relative">
+						<Image
+							src="/murtaza.jpg"
+							alt="Murtaza"
+							width={32}
+							height={32}
+							className="rounded-full object-cover"
+						/>
+						<span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white dark:border-black rounded-full"></span>
+					</div>
 					<span className="text-sm font-medium">Book a Call with Murtaza</span>
 				</Button>
 			</DialogTrigger>

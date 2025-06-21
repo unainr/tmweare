@@ -8,7 +8,7 @@ const Layout = ({children}:LayoutProps) => {
     <>
     <Navigation />
     {children}
-    <Footer dark={true}/>
+    <Footer/>
     </>
   )
 }

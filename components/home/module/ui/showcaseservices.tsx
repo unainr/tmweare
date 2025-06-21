@@ -51,7 +51,7 @@ const ServicesShowcase = () => {
   return (
     <div className="min-h-screen ">
       {/* Main Container */}
-      <div className="max-w-4xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Services List */}
         <div >
           {services.map((service, index) => (
@@ -76,7 +76,7 @@ const ServicesShowcase = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     {/* Service Name */}
-                    <h2 className="text-4xl md:text-5xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    <h2 className="text-4xl md:text-7xl font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                       {service.name}
                     </h2>
 

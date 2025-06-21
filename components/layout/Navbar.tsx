@@ -16,56 +16,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ModeToggle } from "../ui/mode-toggle";
 import BookACallModal from "../home/module/ui/BookACallModal";
-
-const services: {
-	title: string;
-	href: string;
-	description: string;
-	icon: string;
-}[] = [
-	{
-		title: "Web Development",
-		href: "/services/web-development",
-		description:
-			"Custom websites and web applications tailored to your business needs.",
-		icon: "💻",
-	},
-	{
-		title: "Mobile App Development",
-		href: "/services/mobile-development",
-		description:
-			"Native and cross-platform mobile applications for iOS and Android.",
-		icon: "📱",
-	},
-	{
-		title: "UI/UX Design",
-		href: "/services/ui-ux-design",
-		description:
-			"User-centered design that enhances user experience and engagement.",
-		icon: "🎨",
-	},
-	{
-		title: "Digital Marketing",
-		href: "/services/digital-marketing",
-		description:
-			"Comprehensive digital marketing strategies to grow your online presence.",
-		icon: "📈",
-	},
-	{
-		title: "Brand Strategy",
-		href: "/services/brand-strategy",
-		description:
-			"Develop a cohesive brand identity that resonates with your target audience.",
-		icon: "✨",
-	},
-	{
-		title: "E-commerce Solutions",
-		href: "/services/ecommerce",
-		description:
-			"Complete e-commerce platforms with secure payment processing and inventory management.",
-		icon: "🛒",
-	},
-];
+import { servicesDetails } from "@/constants";
 
 const Navigation = () => {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -141,23 +92,23 @@ const Navigation = () => {
 				!isVisible && isScrolled ? "-translate-y-full" : "translate-y-0"
 			)}>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex h-16 items-center">
+				<div className="flex h-16  items-center">
 					{/* Logo */}
-					<div className="flex items-center flex-shrink-0">
+					<div className="flex  items-center flex-shrink-0">
 						<Link
 							href="/"
 							className={cn(
 								"text-xl sm:text-2xl font-bold tracking-tight transition-colors hover:text-primary",
 								isScrolled ? "dark:text-white" : "text-foreground"
 							)}>
-							AgencyWebsite
+							Ravamo
 						</Link>
 					</div>
 
 					{/* Desktop Navigation - Centered */}
-					<div className="hidden md:flex flex-1 justify-center">
-						<NavigationMenu>
-							<NavigationMenuList className="space-x-1">
+					<div className="hidden md:flex  flex-1 justify-center item-center">
+						<NavigationMenu >
+							<NavigationMenuList className="space-x-1 ">
 								<NavigationMenuItem>
 									<NavigationMenuLink
 										asChild
@@ -173,7 +124,21 @@ const Navigation = () => {
 										</Link>
 									</NavigationMenuLink>
 								</NavigationMenuItem>
-
+								<NavigationMenuItem>
+									<NavigationMenuLink
+										asChild
+										className={cn(
+											navigationMenuTriggerStyle(),
+											"bg-transparent hover:bg-white/10",
+											isScrolled
+												? "dark:text-white hover:text-white"
+												: "text-foreground"
+										)}>
+										<Link href="/about" className="font-medium">
+											About
+										</Link>
+									</NavigationMenuLink>
+								</NavigationMenuItem>
 								<NavigationMenuItem>
 									<NavigationMenuTrigger
 										className={cn(
@@ -187,14 +152,14 @@ const Navigation = () => {
 									<NavigationMenuContent>
 										<div className="w-[480px] p-4 bg-background">
 											<div className="grid grid-cols-2 gap-3">
-												{services.slice(0, 4).map((service) => (
+												{servicesDetails.slice(0, 4).map((service) => (
 													<Link
 														key={service.title}
-														href={service.href}
+														href={`/services/${service.id}`}
 														className="group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
 														<div className="flex items-center gap-2 mb-2">
 															<span className="text-lg group-hover:scale-110 transition-transform duration-200">
-																{service.icon}
+																{/* {service.icon} */}
 															</span>
 															<div className="text-sm font-medium leading-none">
 																{service.title}
@@ -206,10 +171,10 @@ const Navigation = () => {
 													</Link>
 												))}
 											</div>
-											{services.length > 4 && (
+											{servicesDetails.length > 4 && (
 												<div className="mt-4 pt-3 border-t">
 													<Link
-														href="/services"
+														href="#"
 														className="text-sm font-medium text-primary hover:underline">
 														View all services →
 													</Link>
@@ -326,15 +291,15 @@ const Navigation = () => {
 										: "max-h-0 opacity-0"
 								)}>
 								<div className="grid gap-3 sm:grid-cols-2">
-									{services.map((service) => (
+									{servicesDetails.map((service) => (
 										<Link
 											key={service.title}
-											href={service.href}
+											href={`/services/${service.id}`}
 											className="group block p-3 rounded-md hover:bg-white/10 transition-colors border border-white/20"
 											onClick={handleMobileLinkClick}>
 											<div className="flex items-center gap-2 mb-2">
 												<span className="text-lg group-hover:scale-110 transition-transform duration-200">
-													{service.icon}
+													{/* {service.icon} */}
 												</span>
 												<div className="text-sm font-medium text-white">
 													{service.title}

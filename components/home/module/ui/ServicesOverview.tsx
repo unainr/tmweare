@@ -37,7 +37,7 @@ const services = [
 
 export default function ServicesOverview() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-10 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute h-full w-full bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:20px_20px]" />
@@ -63,7 +63,7 @@ export default function ServicesOverview() {
         </div>
 
         {/* Services Grid with improved card design */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8   ">
           {services.map((service, index) => (
             <div
               key={index}

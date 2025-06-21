@@ -11,7 +11,7 @@ const ServicesPage = () => {
 			<ServicesHero />
 			<OurServices />
 			<ProcessSteps />
-			<ServicesGlobe
+			{/* <ServicesGlobe
 			circleWithDot={true}
 				heading="Our Services"
 				paragraph="We are a team of experienced professionals who are passionate about what we do. We have a proven track record of delivering high-quality solutions to our clients."
@@ -32,7 +32,7 @@ const ServicesPage = () => {
 				subparagraph="see how TM helped unlock a fundrizsee and the "
 				sphereGrid={true}
 			/>
-			<FAQ/>
+			<FAQ/> */}
 		</>
 	);
 };

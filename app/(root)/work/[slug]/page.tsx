@@ -1,16 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {
-	CheckCircle,
-	Clock,
-	ExternalLink,
-	Github,
-	Tag,
-	Users,
-	Zap,
-	Calendar,
-	ArrowLeft,
-} from "lucide-react";
+
 import { services, works } from "@/constants";
 import Image from "next/image";
 import FooterCTA from "@/components/layout/footercta";
@@ -23,13 +13,6 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 	if (!project) {
 		return <div>Project not found</div>;
 	}
-
-	const metrics = [
-		{ label: "Duration", value: "3 months", icon: Clock },
-		{ label: "Team", value: "5+ members", icon: Users },
-		{ label: "Status", value: "Completed", icon: CheckCircle },
-		{ label: "Impact", value: "+40% performance", icon: Zap },
-	];
 
 	return (
 		<div className="my-10">
@@ -55,7 +38,7 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 			</div>
 
 			{/* Metrics */}
-			<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+			<div className="flex flex-row  items-center justify-center gap-8">
 				{services.map((service, index) => (
 					<div
 						key={index}
@@ -85,9 +68,9 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
 			{/* About + Highlights */}
 			<section className="max-w-6xl mx-auto py-20 px-6">
-				<div className="space-y-12">
+				<div className="space-y-12 ">
 					{/* Text Content First */}
-					<div className="  p-8">
+					<div className="   p-8">
 						<h2 className="text-2xl md:text-3xl font-bold mb-6 ">
 							About the Client
 						</h2>
@@ -96,16 +79,12 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						</p>
 
 						<h3 className="text-xl font-semibold mb-4 ">Project Highlights</h3>
-						<ul className="space-y-3">
-							{[
-								"AI/ML integrations for dynamic analysis",
-								"Custom design system built from scratch",
-								"Integrated testing & deployment flow",
-							].map((highlight, index) => (
-								<li key={index} className="flex items-start">
-									<span className="inline-flex items-center justify-center h-6 w-6 rounded-full  mr-3 mt-0.5">
+						<ul className="space-y-3 ">
+							{project.keyFeatures?.map((highlight: any, index: any) => (
+								<li key={index} className="flex items-start  space-x-3">
+									<div className="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-green-100 text-green-600 mt-1">
 										<svg
-											className="h-4 w-4 "
+											className="h-4 w-4"
 											fill="none"
 											viewBox="0 0 24 24"
 											stroke="currentColor">
@@ -116,7 +95,7 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 												d="M5 13l4 4L19 7"
 											/>
 										</svg>
-									</span>
+									</div>
 									<span>{highlight}</span>
 								</li>
 							))}
@@ -150,41 +129,18 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						project.images.map((img, index) => (
 							<div key={index} className=" p-8 space-y-6">
 								<div>
-									<h2 className="text-2xl md:text-3xl font-bold mb-6 ">
-										About the Client
+									<h2 className="text-3xl md:text-3xl font-bold mb-6 ">
+										Challenges
 									</h2>
 									<p className=" mb-8 leading-relaxed text-lg">
-										{project.longDescription}
+										{project.challenge}
 									</p>
-
-									<h3 className="text-xl font-semibold mb-4 ">
-										Project Highlights
-									</h3>
-									<ul className="space-y-3">
-										{[
-											"AI/ML integrations for dynamic analysis",
-											"Custom design system built from scratch",
-											"Integrated testing & deployment flow",
-										].map((highlight, index) => (
-											<li key={index} className="flex items-start">
-												<span className="inline-flex items-center justify-center h-6 w-6 rounded-full  mr-3 mt-0.5">
-													<svg
-														className="h-4 w-4 "
-														fill="none"
-														viewBox="0 0 24 24"
-														stroke="currentColor">
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															strokeWidth={2}
-															d="M5 13l4 4L19 7"
-														/>
-													</svg>
-												</span>
-												<span>{highlight}</span>
-											</li>
-										))}
-									</ul>
+									<h2 className="text-3xl md:text-3xl font-bold mb-6 ">
+										Results
+									</h2>
+									<p className=" mb-8 leading-relaxed text-lg">
+										{project.solution}
+									</p>
 								</div>
 
 								<div>
@@ -200,8 +156,8 @@ const WorkSlug = async ({ params }: { params: Promise<{ slug: string }> }) => {
 						))}
 				</div>
 			</section>
-            	<FooterCTA />
-			<FaqSection/>
+			<FooterCTA />
+			<FaqSection />
 		</div>
 	);
 };

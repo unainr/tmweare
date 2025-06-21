@@ -30,7 +30,7 @@ const features = [
 
 const HeroMain = () => {
 	return (
-<div className="relative w-full  h-full overflow-hidden bg-[#121212] text-white flex flex-col items-center justify-center p-8 my-16 rounded-xl">
+<div className="relative w-full  h-full overflow-hidden bg-[#0B0B0B] text-white flex flex-col items-center justify-center p-8 my-16 rounded-xl">
 			<div className="w-full max-w-6xl space-y-12 relative z-10">
 				<div className="flex flex-col items-center text-center space-y-8">
 					<Badge

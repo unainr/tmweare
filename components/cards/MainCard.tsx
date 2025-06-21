@@ -20,18 +20,17 @@ const MainCard = () => {
 					Showcasing our latest projects that demonstrate innovation, technical
 					excellence, and measurable results
 				</p>
-<div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4">
-					{works.slice(0, 4).map(work => (
-  <Component
-    key={work.slug}
-    size="lg"
-    imageUrl={work.imageCover}
-    heading={work.title}
-    paragraph={work.shortDescription}
-	slug={work.slug}
-  />
-))}
-
+				<div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-4">
+					{works.slice(0, 4).map((work) => (
+						<Component
+							key={work.slug}
+							size="lg"
+							imageUrl={work.imageCover}
+							heading={work.title}
+							paragraph={work.shortDescription}
+							slug={work.slug}
+						/>
+					))}
 				</div>
 			</div>
 		</div>
