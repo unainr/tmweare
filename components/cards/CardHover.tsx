@@ -22,15 +22,15 @@ const sizeClasses = {
 };
 
 const overlayBgClasses = {
-  default: "bg-black/70",
-  primary: "bg-black/75",
-  secondary: "bg-black/80",
+   default: 'bg-[#3480eb]',
+      primary: 'bg-blue-600',
+      secondary: 'bg-blue-600',
 };
 
 const gradientFromClasses = {
-  default: "from-black/80",
-  primary: "from-black/85",
-  secondary: "from-black/90",
+ default: 'from-[#3480eb]',
+      primary: 'from-blue-600',
+      secondary: 'from-blue-600',
 };
 
 const CardHover = forwardRef<HTMLDivElement, ComponentProps>(
